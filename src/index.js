@@ -23,28 +23,51 @@ function formatDate(currentDate) {
   date.innerHTML = `${day}, ${hours}: ${min}`;
 }
 formatDate();
-//
+
+function searchCity(city) {
+  let apiKey = "96ad27349a64ea1dcdfbe6f4d458c085";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showTemperature);
+}
+function showTemperature(response) {
+  let searchedCity = document.querySelector("#cities");
+  searchedCity.innerHTML = response.data.name;
+  let temperature = Math.round(response.data.main.temp);
+  let celciusTemp = `${temperature}°C`;
+  let cityTemp = document.querySelector("#temp");
+  cityTemp.innerHTML = celciusTemp;
+}
 function citySearch(event) {
   event.preventDefault();
   let typeCity = document.querySelector("#search-input");
-  let cityValue = document.querySelector("#city");
-  cityValue.innerHTML = typeCity.value;
+  searchCity(typeCity.value);
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", citySearch);
-//
-function changeCelciusTemp(event) {
-  event.preventDefault();
-  let newTempCelcius = document.querySelector("#temperature");
-  newTempCelcius.innerHTML = `20`;
-}
-let newTempC = document.querySelector("#celcius-link");
-newTempC.addEventListener("click", changeCelciusTemp);
 
-function changeFarenheitTemp(event) {
-  event.preventDefault();
-  let newTempFarenheit = document.querySelector("#temperature");
-  newTempFarenheit.innerHTML = `68`;
+navigator.geolocation.getCurrentPosition(showPosition);
+
+function showPosition(position) {
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiKey = "96ad27349a64ea1dcdfbe6f4d458c085";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  axios.get(apiUrl).then(currentCityTemperature);
 }
-let newTempF = document.querySelector("#farenheit-link");
-newTempF.addEventListener("click", changeFarenheitTemp);
+
+function currentCityTemperature(response) {
+  let currentCity = document.querySelector("#cities");
+  currentCity.innerHTML = response.data.name;
+  let searchedCityTemp = Math.round(response.data.main.temp);
+  let searchedCityTempCelcius = `${searchedCityTemp}°C`;
+  let displayCityTemp = document.querySelector("#temp");
+  displayCityTemp.innerHTML = searchedCityTempCelcius;
+}
+
+function currentCitySearch(event) {
+  event.preventDefault();
+  let searchCurrentCity = document.querySelector("#current-location");
+  searchCity(searchCurrentCity.value);
+}
+let button = document.querySelector("button");
+button.addEventListener("click", currentCitySearch);

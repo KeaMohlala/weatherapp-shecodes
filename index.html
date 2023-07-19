@@ -17,6 +17,7 @@
       href="https://fonts.googleapis.com/css2?family=Sancreek&display=swap"
       rel="stylesheet"
     />
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   </head>
   <body>
     <div class="container">
@@ -36,22 +37,26 @@
             <input
               type="submit"
               value="Search"
-              class="form-control btn btn-primary shadow-sm"
+              class="form-control btn btn-primary shadow-sm w-100"
             />
+          </div>
+          <div class="col-3">
+            <button class="btn btn-info w-100" id="current-location">
+              Current Location
+            </button>
           </div>
         </div>
       </form>
       <br />
       <div class="border">
-        <div class="city"><span id="city">Johannesburg </span> 19°C</div>
+        <div class="city">
+          <span id="cities">Johannesburg</span>
+          <span class="temperature" id="temp">19°C</span>
+        </div>
         <div class="search" id="date">Thursday, 11:37</div>
         <div class="emoji">🌞</div>
         <div class="search">
-          <span class="temperature" id="temperature"> 20 </span>
-          <span class="units">
-            <a href="#" id="celcius-link">°C </a>
-            / <a href="#" id="farenheit-link">°F </a>
-          </span>
+          <span class="current-temperature" id="forecast-temp"> 20°C </span>
         </div>
       </div>
       <div class="forecast">
