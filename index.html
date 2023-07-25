@@ -51,12 +51,24 @@
       <div class="border">
         <div class="city">
           <span id="cities">Johannesburg</span>
-          <span class="temperature" id="temp">19°C</span>
+          <span class="temperature" id="temp">19</span>
+          <span class="units">
+            <a href="#" id="celcius-link" class="active">°C </a>
+            | <a href="#" id="farenheit-link">°F </a>
+          </span>
         </div>
         <div class="search" id="date">Thursday, 11:37</div>
-        <div class="emoji">🌞</div>
-        <div class="search">
-          <span class="current-temperature" id="forecast-temp"> 20°C </span>
+        <div class="icon">
+          <img
+            src="https://ssl.gstatic.com/onebox/weather/64/sunny_s_cloudy.png"
+            alt="clear"
+            id="icon"
+          />
+        </div>
+        <div class="description" id="description">Clear</div>
+        <div class="moreinfo">
+          <span class="humidity" id="humidity">Humidity: 0%</span>
+          <span class="wind" id="wind">Wind: 5km/h</span>
         </div>
       </div>
       <div class="forecast">

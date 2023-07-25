@@ -19,3 +19,25 @@
 .search-form {
   margin-bottom: 20px;
 }
+.container {
+  margin: 30px, auto;
+  padding: 30px;
+  max-width: 900px;
+}
+.humidity {
+  margin-left: -30px;
+  margin-right: 10px;
+}
+.description {
+  text-transform: capitalize;
+}
+
+.units a {
+  text-decoration: none;
+  color: #ff6473;
+  cursor: default;
+}
+.units a:hover {
+  text-decoration: underline;
+  cursor: default;
+}
